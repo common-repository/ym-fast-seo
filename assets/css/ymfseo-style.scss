@@ -1,0 +1,385 @@
+:root {
+	--ymfseo-settings-bg: #f9f9f9;
+	--ymfseo-settings-border-radius: 8px;
+
+	--ymfseo-red: #dc3232;
+	--ymfseo-green: #46B450;
+	--ymfseo-yellow: #ffb900;
+	--ymfseo-blue: #0073aa;
+}
+
+/* Manage columns */
+th.manage-column.column-ymfseo {
+	width: 40px;
+
+	text-align: center;
+}
+td.ymfseo.column-ymfseo {
+	vertical-align: middle;
+}
+.column-ymfseo__dot {
+	width: 40px;
+	height: 40px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	span {
+		background-color: #f0f0f0;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+
+		display: block;
+
+		&.good {
+			background-color: var( --ymfseo-green );
+		}
+		&.alert {
+			background-color: var( --ymfseo-yellow );
+		}
+		&.bad {
+			background-color: var( --ymfseo-red );
+		}
+		&.noindex {
+			background-color: var( --ymfseo-blue );
+		}
+	}
+}
+
+/* Meta box */
+#ymfseo_fields.postbox {
+	/* Container */
+	> .inside {
+		margin-top: 0;
+		padding: 12px;
+
+		.ymfseo-box {
+			/* Page */
+			&__page {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			details {
+				&:not( [ open ] ) + details {
+					margin-top: -16px;
+				}
+
+				summary {
+					margin-bottom: 10px;
+
+					cursor: pointer;
+
+					text-transform: uppercase;
+				}
+			}
+	
+			/* Field */
+			&__field-box {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+	
+				> label {
+					font-size: 11px;
+					font-weight: 500;
+					line-height: 1.4;
+					text-transform: uppercase;
+					display: inline-block;
+				}
+				textarea {
+					height: auto;
+				}
+				p {
+					margin: 2px 0 0 0;
+	
+					font-size: 12px;
+					color: #757575;
+				}
+			}
+
+			/* Checkbox */
+			&__checkbox {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+
+				> span {
+					display: flex;
+					align-items: center;
+
+					input {
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+
+	/* Gutenberg fix */
+	&:has( .ymfseo-box_gutenberg ) {
+		/* Header tab */
+		> .postbox-header {
+			h2 {
+				padding: 0 16px ;
+	
+				font-size: 13px;
+			}
+		}
+
+		/* Container */
+		> .inside {
+			padding: 5px 16px 16px 16px;
+
+			.ymfseo-box {
+				/* Checkbox */
+				&__checkbox {
+					margin-top: 2px;
+	
+					gap: 10px;
+				}
+			}
+		}
+	}
+}
+.ymfseo-length-checker {
+	background-color: rgba( 0, 0, 0, .2 );
+	height: 2px;
+
+	position: relative;
+
+	&::after {
+		content: '';
+
+		background-color: var( --ymfseo-yellow );
+		width: var( --ymfseo-checker-width );
+		max-width: 100%;
+
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	&_top-margin {
+		margin-top: 6px;
+	}
+
+	&.good::after {
+		background-color: var( --ymfseo-green );
+	}
+	&.bad::after {
+		background-color: var( --ymfseo-red );
+	}
+}
+
+/* Tags table */
+.ymfseo-box__tags-table {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	row-gap: 5px;
+
+	> div {
+		&:nth-child( odd ) {
+			display: flex;
+			align-items: flex-start;
+
+			span {
+				background-color: #f0f0f0;
+				margin-right: 6px;
+				padding: 1px 4px 3px 4px;
+				border-radius: 4px;
+
+				display: block;
+
+				word-wrap: nowrap;
+			}
+		}
+		&:nth-child( even ) {
+			overflow-wrap: anywhere;
+		}
+	}
+}
+
+/* Settings */
+.ymfseo-seettings-page {
+	&__header {
+		background-color: var( --ymfseo-settings-bg );
+		padding: 20px;
+		border-radius: var( --ymfseo-settings-border-radius );
+		border: 1px solid #eaecf0;
+		box-shadow: 0 1px 2px rgba( 16, 24, 40, .1 );
+
+		h1 {
+			margin: 0;
+			padding-top: 0;
+		}
+		> p {
+			margin: 2px 0 0 0;
+		}
+	}
+
+	form {
+		> h2 {
+			background-color: var( --ymfseo-settings-bg );
+			margin: 20px 0 0 0;
+			padding: 20px;
+			border-radius: var( --ymfseo-settings-border-radius ) var( --ymfseo-settings-border-radius ) 0 0;
+			border: 1px solid #eaecf0;
+			border-bottom: none;
+			box-shadow: 0 1px 2px rgba( 16, 24, 40, .1 );
+		}
+		> p {
+			&:not( .submit ) {
+				background-color: var( --ymfseo-settings-bg );
+				margin: -10px 0 0 0;
+				padding: 0 20px 10px 20px;
+				border: 1px solid #eaecf0;
+				border-top: none;
+				border-bottom: none;
+				box-shadow: 0 1px 2px rgba( 16, 24, 40, .1 );
+			}
+
+			code {
+				border-radius: 3px;
+			}
+		}
+		> table {
+			background-color: var( --ymfseo-settings-bg );
+			margin: 0;
+			padding: 20px;
+			border-radius: 0 0 var( --ymfseo-settings-border-radius ) var( --ymfseo-settings-border-radius );
+			border: 1px solid #eaecf0;
+			box-shadow: 0 1px 2px rgba( 16, 24, 40, .1 );
+
+			display: block;
+
+			@media screen and ( max-width: 782px ) {
+				th {
+					padding-bottom: 4px;
+				}
+				tr:first-of-type th {
+					padding-top: 0;
+				}
+			}
+
+			tbody {
+				width: 100%;
+    			display: block;
+
+				tr {
+					width: 100%;
+    				display: block;
+
+					td {
+						textarea {
+							&[ name=ymfseo_robots_txt ] {
+								text-wrap: nowrap;
+							}
+						}
+					}
+
+					&.sub-field {
+						th {
+							font-weight: 400;
+							color: #494e51;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.ymfseo-settings-separator-grid {
+		width: 25em;
+		margin-bottom: 10px;
+	
+		display: grid;
+		grid-template-columns: repeat( 7, 1fr );
+		gap: 8px;
+	
+		@media screen and ( max-width: 782px ) {
+			width: 100%;
+	
+			display: flex;
+			flex-wrap: wrap;
+		}
+	
+		&__item {
+			background-color: #fff;
+			max-width: 50px;
+			border-radius: 4px;
+			border: 1px solid #8c8f94;
+			aspect-ratio: 1;
+	
+			position: relative;
+	
+			display: flex;
+			align-items: center;
+			justify-content: center;
+	
+			@media screen and ( max-width: 782px ) {
+				width: 45px;
+			}
+	
+			&:has( input:checked ) {
+				border-color: #2271b1;
+				box-shadow: 0 0 0 1px #2271b1;
+				outline: 2px solid transparent;
+			}
+	
+			input {
+				width: 100%;
+				height: 100%;
+				margin: 0 !important;
+				border-radius: 0;
+	
+				position: absolute;
+	
+				opacity: 0;
+			}
+			span {
+				width: 100%;
+				height: 100%;
+	
+				display: flex;
+				align-items: center;
+				justify-content: center;
+	
+				font-size: 17px;
+				color: #2c3338;
+			}
+		}
+	}
+
+	.ymfseo-settings-image-section {
+		img {
+			width: 25em;
+			height: auto;
+			margin-bottom: 20px;
+			border-radius: 6px;
+	
+			@media screen and ( max-width: 782px ) {
+				width: 100%;
+			}
+		}
+	
+		.action-buttons {
+			button {
+				&[ hidden ] {
+					display: none;
+				}
+			}
+		}
+	}
+
+	tbody:has( tr.rep-type option[ value=org ][ selected ] ) tr.rep-person {
+		display: none;
+	}
+	tbody:has( tr.rep-type option[ value=person ][ selected ] ) tr.rep-org {
+		display: none;
+	}
+}
